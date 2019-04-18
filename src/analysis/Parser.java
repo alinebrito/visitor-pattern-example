@@ -1,3 +1,4 @@
+package analysis;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -18,8 +19,11 @@ public class Parser {
 		return types;
 	}
 
-	public void visitAllJavaFiles(final String path) throws IOException {
+	public void visitAllJavaFiles(final String path) throws IOException{
 		File project = new File(path);
+		if(!project.exists()){
+			System.err.println("Project not found " + path);
+		}
 		this.findJavaFiles(project);
 	}
 	
