@@ -1,6 +1,6 @@
 #  Visitor Pattern
 
-Implementation of Visitor Pattern using JDT API.
+Implementation of Visitor Pattern using JDT API. Example to print public classes from a Java project.
 
 ## Configuration:
 
