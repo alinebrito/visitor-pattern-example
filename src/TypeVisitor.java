@@ -1,24 +1,27 @@
 
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.eclipse.jdt.core.dom.ASTVisitor;
 import org.eclipse.jdt.core.dom.TypeDeclaration;
 
 public class TypeVisitor extends ASTVisitor{
 	
-	/**
-	 * Imprime o nome da classe se ela for pública.
-	 * @param typeVisitor
-	 */
-	public void printNameTypes(TypeDeclaration type) {
-		if(UtilTools.isVisibilityPublic(type)){
-			System.out.println(UtilTools.getTypeName(type));
-		}
+	private List<TypeDeclaration> types = new ArrayList<TypeDeclaration>();
+	
+	public List<TypeDeclaration> getTypes() {
+		return types;
+	}
+
+	public void setTypes(List<TypeDeclaration> types) {
+		this.types = types;
 	}
 
 	@Override
 	public boolean visit(TypeDeclaration type) {
+		this.types.add(type);
 		return super.visit(type);
 	}
-
 
 }

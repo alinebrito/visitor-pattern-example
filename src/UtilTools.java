@@ -1,4 +1,5 @@
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 
@@ -6,7 +7,6 @@ import org.eclipse.jdt.core.dom.BodyDeclaration;
 import org.eclipse.jdt.core.dom.TypeDeclaration;
 
 public class UtilTools {
-	
 	
 	public static String readFileToString(String filePath) throws IOException {
 		StringBuilder fileData = new StringBuilder(1000);
@@ -25,18 +25,18 @@ public class UtilTools {
 		return fileData.toString();
 	}
 	
-	public static Boolean isJavaFile(final String nameFile){
-		return (nameFile!=null && nameFile.endsWith(".java"))?true:false;
+	public static Boolean isJavaFile(final File file){
+		return (file!= null && file.isFile() && file.getName()!=null && file.getName().endsWith(".java"));
 	}
 	
 	public static String getVisibility(BodyDeclaration node){
 		for (Object modifier : node.modifiers()) {
-			if(modifier.toString().equals("public") || modifier.toString().equals("private")
-					|| modifier.toString().equals("protected")){
+			if(modifier.toString().equals("public") 
+				|| modifier.toString().equals("private")
+				|| modifier.toString().equals("protected")){
 				return modifier.toString();
 			}
 		}
-		
 		return "default";
 	}
 	
